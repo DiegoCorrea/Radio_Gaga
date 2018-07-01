@@ -5,12 +5,16 @@ def user_statistical():
     set_to_analyse = open(
         'db/set/playCount.csv',
         'r+'
-        )
+    )
     songs = []
     users = []
     heard = []
+    count = 0
     for line in set_to_analyse:
-        lineSplit = line.split('\t')
+        count += 1
+        if count == 1:
+            continue
+        lineSplit = line.split(',')
         users.append(lineSplit[0])
         songs.append(lineSplit[1])
         heard.append(int(lineSplit[2]))

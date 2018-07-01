@@ -26,29 +26,3 @@ class Song(models.Model):
             song_id=self.id,
             title=self.title,
         )
-
-
-class SongSimilarity(models.Model):
-    # IDS
-    songBase = models.ForeignKey(
-        Song, unique=False, related_name='SongSimilarity_right'
-    )
-    songCompare = models.ForeignKey(
-        Song, unique=False, related_name='SongSimilarity_left'
-    )
-    # Datas
-    title = models.FloatField(default=0.0, unique=False)
-    userHeard = models.FloatField(default=0.0, unique=False)
-    # Timers
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        unique_together = (('songBase', 'songCompare'),)
-
-    def as_json(self):
-        return dict(
-            songBase=self.songBase,
-            songCompare=self.songCompare,
-            similarity=self.similarity
-            )

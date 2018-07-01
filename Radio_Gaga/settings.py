@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'src.data.song',
     'src.data.user',
     'src.data.userPlaySongs',
+    'src.kernel.similarities.songSimilarity',
 ]
 
 MIDDLEWARE = [

@@ -18,7 +18,7 @@ class SongSimilarity(models.Model):
         on_delete=models.CASCADE
     )
     # Datas
-    similarity = models.FloatField(default=0.0, unique=False)
+    cosine = models.FloatField(default=0.0, unique=False)
     # Timers
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -30,5 +30,5 @@ class SongSimilarity(models.Model):
         return dict(
             songBase=self.songBase,
             songCompare=self.songCompare,
-            similarity=self.similarity
+            cosine=self.cosine
         )

@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'src.data.song',
+    'src.data.user',
+    'src.data.userPlaySongs',
 ]
 
 MIDDLEWARE = [

@@ -38,27 +38,31 @@ def selectUsers(userDict):
         'w+'
     )
     usersToSaveFile.write('id\n')
-    playCountToSaveFile.write('user_id,song_id,play_count\n')
+    playCountToSaveFile.write('id,user_id,song_id,play_count\n')
+    count = 0
     for user in userDict:
         if len(userDict[user]) > 50:
             usersToSaveFile.write(user + "\n")
             for song in userDict[user]:
-                if song not in songListID:
+                if song not in set(songListID):
                     songListID.append(song)
                 playCountToSaveFile.write(
-                    str(user)
+                    str(count)
+                    + ','
+                    + str(user)
                     + ','
                     + str(song)
                     + ','
                     + str(userDict[user][song])
                 )
-                if len(songListID) >= 5000:
+                count += 1
+                if len(set(songListID)) >= 5000:
                     usersToSaveFile.close()
                     playCountToSaveFile.close()
-                    return songListID
+                    return set(songListID)
     usersToSaveFile.close()
     playCountToSaveFile.close()
-    return songListID
+    return set(songListID)
 
 
 def selectSongs(songListID):
@@ -76,7 +80,7 @@ def selectSongs(songListID):
         if (status % 1000 == 0):
             print ("-> [", status, "]")
         lineSplit = line.split(',')
-        if lineSplit[0] not in songListID:
+        if lineSplit[0] not in set(songListID):
             continue
         songsToSaveFile.write(lineSplit[0] + ',' + lineSplit[1] + '\n')
     songsToSaveFile.close()

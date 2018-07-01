@@ -1,17 +1,24 @@
 # Create your models here.
 from django.db import models
 
-from apps.data.user.models import User
-from apps.data.song.models import Song
+from src.data.user.models import User
+from src.data.song.models import Song
 
 
 class UserPlaySongs(models.Model):
-    user = models.ForeignKey(User, unique=False, related_name='user')
-    song = models.ForeignKey(Song, unique=False, related_name='song')
+    user = models.ForeignKey(
+        User,
+        unique=False,
+        related_name='user',
+        on_delete=models.CASCADE
+    )
+    song = models.ForeignKey(
+        Song,
+        unique=False,
+        related_name='song',
+        on_delete=models.CASCADE
+    )
     play_count = models.IntegerField(default=0, unique=False)
-
-    class Meta:
-        unique_together = (('user', 'song'),)
 
     def as_json(self):
         return dict(

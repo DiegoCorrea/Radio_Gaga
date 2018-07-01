@@ -8,7 +8,7 @@ from django.db import models
 class Song(models.Model):
     id = models.CharField(
         max_length=255, unique=True, db_index=True,
-        primary_key=True, default=uuid.uuid1().hex
+        primary_key=True
     )
     title = models.CharField(max_length=511, unique=False)
 

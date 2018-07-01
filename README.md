@@ -17,3 +17,4 @@ Radio Gaga é uma radio de recomendação de músicas baseando-se em abordagem h
 
 # Rodando o Projeto
 1. Inicie o Virtual Env: `. env/bin/activate`  
+1. Abrir o SQLite3: `sqlite3 db.sqlite3`
